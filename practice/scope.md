@@ -8,6 +8,7 @@ const lastName = "Stark";
 var knownAs = "no one";
 
 console.log(window.firstName, window.lastName, window.knownAs);
+// undefined, undefined, "no one"
 ```
 
 2. Guess the output:
@@ -22,6 +23,7 @@ function fullName(a, b) {
 }
 
 console.log(window.fullName(firstName, lastName));
+// AryaStark
 ```
 
 3. Make a Execution Context Diagram for the following JS and write the output.
@@ -33,6 +35,9 @@ fucntion addOne(num){
 var one = addOne(0);
 var two = addOne(1);
 console.log(one, two);
+
+//Output: 1 2
+
 ```
 
 4. Make a Execution Context Diagram for the following JS and write the output.
@@ -44,6 +49,8 @@ fucntion addOne(num){
 }
 var two = addOne(1);
 console.log(one, two);
+
+//Output: 1 2
 ```
 
 5. Make a Execution Context Diagram for the following JS and write the output.
@@ -55,6 +62,10 @@ fucntion addOne(num){
 }
 var two = addOne(1);
 console.log(two);
+
+//Output : 
+//1
+//2
 ```
 
 6. Make a Execution Context Diagram for the following JS and write the output.
@@ -66,12 +77,14 @@ const addOne = num => {
 };
 var two = addOne(1);
 console.log(two);
+
+//Output: throws error: can't access addOne before initialization; Code stops there.
 ```
 
 7. Make a Execution Context Diagram for the following JS and write the output.
 
 ```js
-console.log(addOne(0));
+console.log(addOne(0)); //can't access addOne before initialization; Code stops here.
 const addOne = num => {
   return num + 1;
 };
@@ -90,6 +103,8 @@ function isAwesome() {
   console.log(awesome);
 }
 isAwesome();
+
+//Output: undefined
 ```
 
 9. What will be the output of the following
@@ -103,6 +118,9 @@ function isAwesome() {
   console.log(awesome);
 }
 isAwesome();
+
+//Output: true
+
 ```
 
 10. What will be the output of the following
@@ -116,6 +134,8 @@ function isAwesome() {
   console.log(awesome);
 }
 isAwesome();
+
+//Output: undefined
 ```
 
 11. What will be the output of the following
@@ -130,6 +150,9 @@ function fullName(a, b) {
 }
 const name = fullName(firstName, lastName);
 console.log(name);
+
+//Output: AryaStark
+
 ```
 
 12. What will be the output of the following
@@ -144,6 +167,8 @@ function fullName(a, b) {
 }
 const name = fullName(firstName, lastName);
 console.log(name);
+
+//Output: AryaStark
 ```
 
 13. Guess the output of the code below with a reason.
@@ -155,6 +180,8 @@ function sayHello() {
 sayHello();
 
 console.log(name);
+
+//Output: SHOULD BE: name is not defined because name does not exist in global scope/ ATUAL OUTPUT: <empty string>
 ```
 
 14. Guess the output of the code below with a reason.
@@ -164,6 +191,8 @@ if (true) {
   var name = "Arya Stark";
 }
 console.log(name);
+
+//Output: Arya Stark
 ```
 
 15. Guess the output of the code below with a reason.
@@ -173,6 +202,8 @@ if (true) {
   let name = "Arya Stark";
 }
 console.log(name);
+
+//Output: SHOULD BE: name is not defined because name does not exist in global scope/ ATUAL OUTPUT: <empty string>
 ```
 
 16. Guess the output of the code below with a reason.
@@ -182,6 +213,9 @@ for (var i = 0; i < 20; i++) {
   //
 }
 console.log(i);
+
+//Output: 20 because var has functional scope, and is hence accessible in global
+
 ```
 
 17. Guess the output of the code below with a reason.
@@ -191,6 +225,9 @@ for (let i = 0; i < 20; i++) {
   //
 }
 console.log(i);
+
+//Output: should be not defined, actual output in firefox: 0. Why?!
+//in chrome, as expected, i is not defined.
 ```
 
 18. Guess the output of the code below with a reason.
@@ -200,6 +237,18 @@ for (var i = 0; i < 20; i++) {
   setTimeout(() => console.log(i, "first"), 100);
 }
 console.log(i, "second");
+
+//OUTPUT:
+//20 second
+//20 first
+//20 first
+//20 first
+//total 20 times "20 first"
+
+//REASON: value of i becomes 20 at end of loop running, then is console logged, then the console log from inside for exectutes 20 times with value of i as 20.
+
+
+
 ```
 
 19. Guess the output of the code below with a reason.
@@ -209,6 +258,18 @@ for (let i = 0; i < 20; i++) {
   setTimeout(() => console.log(i, "first"), 100);
 }
 console.log(i, "second");
+
+//OUTPUT:
+//i is not defined on line 259
+//0 first
+//1 first
+//...
+//19 first
+
+//NOT CLEAR> TO UNDERSTAND!
+
+//REASON: value of i reaches 20 at the end of for loop exectution, but is not accessible outside the loop, hence is printed as not defined. then the console logs from within the loop run, after 100ms, and each iteration has i (copy of i?), with value at that point
+
 ```
 
 20. Guess the output and the reason behind that.
@@ -220,6 +281,9 @@ function sample() {
   }
   console.log(username);
 }
+
+//OUTPUT: undefined, as the function is never called.
+//if called, output will be "John Snow"
 ```
 
 21. Guess the output and the reason behind that.
@@ -231,6 +295,8 @@ function sample() {
   }
   console.log(username);
 }
+
+//output: username is not defined, as let has block scope
 ```
 
 22. Guess the output and the reason behind that.
@@ -244,6 +310,14 @@ function sample() {
   }
   console.log(username, "second");
 }
+
+//OUTPUT:
+//should be error at line 308?: redeclaration of username; UNDERSTAND
+//ACTUAL OUTPUT: John Snow
+// John Snow second
+
+
+
 ```
 
 23. Guess the output and the reason behind that.
@@ -257,6 +331,10 @@ function sample() {
   }
   console.log(username, "second");
 }
+
+//OUTPUT:
+//John Snow first
+//Arya Stark second
 ```
 
 24. Guess the output and the reason behind that.
@@ -270,6 +348,12 @@ function sample(...args) {
 }
 
 sample("First", "Second", "Third");
+
+
+//OUTPUT:
+//Hello I am First
+//Hello I am Second
+//Hello I am Third
 ```
 
 25. Guess the output and the reason behind that.
@@ -283,6 +367,10 @@ function sample(...args) {
 }
 
 sample("First", "Second", "Third");
+//OUTPUT:
+//Hello I am First
+//Hello I am Second
+//Hello I am Third
 ```
 
 26. Guess the output and the reason behind that.
@@ -292,9 +380,9 @@ if (true) {
   const myFunc = function() {
     console.log(username, "Second");
   };
-  console.log(username, "First");
+  console.log(username, "First"); //username not defined
   let username = "Hello World!";
-  myFunc();
+  myFunc(); //Hello World Second, but not executed as error above
 }
 ```
 
@@ -304,12 +392,15 @@ if (true) {
 function outer() {
   let movie = "Mad Max: Fury Road";
   function inner() {
-    console.log("I love this movie called ${movie.toUpperCase()}");
+    console.log("I love this movie called ${movie.toUpperCase()}"); // variables only work with backticks. As such, will print I love this movie called ${movie.toUpperCase()}
+    //if backticks used, will print "I love this movie called MAD MAX: FURY ROAD"
   }
   inner();
 }
 
 outer();
+
+//OUTPUT: I love this movie called MAD MAX: FURY ROAD
 ```
 
 28. Guess the output and the reason behind that.
@@ -325,6 +416,9 @@ function outer() {
 }
 
 outer();
+
+//OUTPUT (if backticks used):
+//I love this movie called BEFORE SUNRISE
 ```
 
 29. Guess the output and the reason behind that.
@@ -344,6 +438,10 @@ function outer() {
 }
 
 outer();
+
+//OUTPUT:
+//I love this movie called GONE GIRL
+
 ```
 
 30. Execute all the functions inside `allFunctions` variable using any loop. (Hint: use for of loop functions are object)
@@ -356,13 +454,20 @@ const sub = (a, b) => {
   return a - b;
 };
 const multiply = (a, b) => {
-  return a + b;
+  return a + b; //should be a * b
 };
 const divide = (a, b) => {
   return a / b;
 };
 
 let allFunctions = [add, sub, multiply, divide];
+
+//ANSWER:
+
+for (fn of allFunctions) {
+    console.log(fn(8, 2));
+}
+
 ```
 
 31. You have to pass 10 and 12 as initial value and find the final output when you pass the return value of one function as an input to the next function in the array `allFunctions`.
@@ -375,11 +480,15 @@ const sub = (a, b) => {
   return a - b;
 };
 const multiply = (a, b) => {
-  return a + b;
+  return a * b;
 };
 const divide = (a, b) => {
   return a / b;
 };
 
 let allFunctions = [add, add, add, add, add, sub, sub, multiply, divide];
+
+//UNCLEAR!!!!!!
+
+
 ```
