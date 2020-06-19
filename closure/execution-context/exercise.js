@@ -24,3 +24,6 @@ counter.increment();
 counter.value();
 counter.decrement();
 counter.value();
+
+
+//DONE. 
